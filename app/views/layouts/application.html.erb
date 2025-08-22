@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Turbo Transitions Demo" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="view-transition" content="same-origin">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body data-controller="page-transition">
+    <div class="transition-indicator"></div>
+    
+    <!-- Enhanced Navigation -->
+    <div id="webcrumbs">
+            <div class="bg-white">
+                <header class="flex items-center justify-between py-3 px-6 border-b">
+                    <a href="/" class="flex items-center">
+                        <svg class="h-8 w-8 text-primary-500" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M16 28.18c-3.49 0-6.52-1.93-8-4.74C3.23 19.25 2.58 12.71 7.23 8.35c2.08-1.96 4.93-2.7 7.96-2.07 3.03.63 5.77 2.77 7.33 5.73.48.89.77 1.93 1.07 2.99.4 1.37.71 3.42-.35 4.48-.63.63-1.65.63-2.5.3-1.07-.4-1.16-1.42-1.34-2.41-.18-.98-.36-1.96-.71-2.86-1.07-2.59-3.13-4.38-5.9-4.83-2.77-.45-5.36.54-7.15 2.59-1.61 1.87-2.5 4.12-2.41 6.62.09 2.68 1.16 5 2.95 6.8 2.05 2.06 4.93 2.94 7.69 2.32 2.77-.62 5.01-2.59 5.99-5.27.09-.27.18-.54.27-.8.09-.36.27-.45.63-.45h5.54c.45 0 .63.18.63.62 0 .27-.09.54-.18.8-1.61 5.19-6.16 8.78-11.61 9.14-.35.09-.8.09-1.16.09z"
+                                fill="#FF5A5F"
+                            ></path>
+                        </svg>
+                        <span class="text-primary-500 text-2xl ml-1">airbnb</span>
+                    </a>
+                    <div class="flex items-center">
+                        <div class="flex items-center border rounded-full shadow-sm mr-4">
+                            <button class="py-2 px-4 text-sm font-medium">🏠 Anywhere</button>
+                            <div class="h-5 border-l"></div>
+                            <button class="py-2 px-4 text-sm font-medium">Anytime</button>
+                            <div class="h-5 border-l"></div>
+                            <button class="py-2 px-4 text-sm font-medium">Add guests</button>
+                            <button class="rounded-full bg-primary-500 p-2 text-white ml-2 mr-1">
+                                <span class="material-symbols-outlined text-sm">search</span>
+                            </button>
+                        </div>
+                        <div class="flex items-center">
+                            <button class="mr-2 text-sm font-medium">Become a host</button>
+                            <button class="mr-2 p-1"><span class="material-symbols-outlined">language</span></button>
+                            <button class="border rounded-full p-2 flex items-center">
+                                <span class="material-symbols-outlined">menu</span>
+                            </button>
+                        </div>
+                    </div>
+                </header>
+            </div>
+        </div>
+    <main id="main">
+      <%= yield %>
+    </main>
+  </body>
+</html>

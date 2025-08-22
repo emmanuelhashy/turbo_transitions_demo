@@ -1,0 +1,83 @@
+<div style="max-width: 1280px; margin: 0 auto; padding: 32px 16px;">
+  <!-- Back button -->
+  <div style="margin-bottom: 24px;">
+    <%= link_to root_path, style: "display: inline-flex; align-items: center; color: #6b7280; text-decoration: none; transition: color 0.15s;" do %>
+      <svg style="width: 20px; height: 20px; margin-right: 8px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      Back to listings
+    <% end %>
+  </div>
+
+  <!-- Property title -->
+  <div style="margin-bottom: 24px;">
+    <h1 style="font-size: 30px; font-weight: bold; color: #111827; margin-bottom: 8px;"><%= @property[:title] %></h1>
+    <p style="font-size: 18px; color: #6b7280;"><%= @property[:location] %></p>
+  </div>
+
+  <!-- Property image gallery -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 32px;">
+    <!-- Main image - this will animate from the listing -->
+    <div>
+      <img
+        src="<%= @property[:image] %>"
+        alt="<%= @property[:title] %>"
+        style="width: 100%; height: 384px; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);"
+        data-transition-name="listing-<%= @property[:id] %>"
+      />
+    </div>
+    
+    <!-- Property details -->
+    <div>
+      <div style="background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+          <div>
+            <p style="font-size: 30px; font-weight: bold; color: #111827; margin: 0;">
+              $<%= @property[:price] %>
+            </p>
+            <p style="color: #6b7280; margin: 0;">for <%= @property[:nights] %> nights</p>
+          </div>
+          <div style="display: flex; align-items: center; background: #f3f4f6; padding: 8px 12px; border-radius: 8px;">
+            <svg style="height: 20px; width: 20px; color: #fbbf24; margin-right: 4px;" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            <span style="font-weight: 600;"><%= @property[:rating] %></span>
+          </div>
+        </div>
+        
+        <!-- Booking form -->
+        <div style="margin-bottom: 24px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+            <div style="border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px;">
+              <label style="display: block; font-size: 12px; font-weight: 600; color: #6b7280; text-transform: uppercase; margin-bottom: 4px;">Check-in</label>
+              <input type="date" style="width: 100%; border: none; padding: 0; outline: none;" value="2024-03-15">
+            </div>
+            <div style="border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px;">
+              <label style="display: block; font-size: 12px; font-weight: 600; color: #6b7280; text-transform: uppercase; margin-bottom: 4px;">Check-out</label>
+              <input type="date" style="width: 100%; border: none; padding: 0; outline: none;" value="2024-03-17">
+            </div>
+          </div>
+          <div style="border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px;">
+            <label style="display: block; font-size: 12px; font-weight: 600; color: #6b7280; text-transform: uppercase; margin-bottom: 4px;">Guests</label>
+            <select style="width: 100%; border: none; padding: 0; outline: none;">
+              <option>1 guest</option>
+              <option>2 guests</option>
+              <option>3 guests</option>
+              <option>4 guests</option>
+            </select>
+          </div>
+        </div>
+        
+        <button style="width: 100%; background: #f43f5e; color: white; padding: 12px 24px; border-radius: 8px; font-weight: 600; border: none; cursor: pointer; transition: background-color 0.15s;" onmouseover="this.style.backgroundColor='#e11d48'" onmouseout="this.style.backgroundColor='#f43f5e'">
+          Reserve
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Property description -->
+  <div>
+    <h2 style="font-size: 24px; font-weight: bold; color: #111827; margin-bottom: 16px;">About this place</h2>
+    <p style="color: #374151; line-height: 1.6;"><%= @property[:description] %></p>
+  </div>
+</div>
